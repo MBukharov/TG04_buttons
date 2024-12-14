@@ -1,9 +1,9 @@
 import asyncio
 from aiogram import Bot, Dispatcher,F
 from aiogram.filters import CommandStart, Command
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 from config import TOKEN_TG
-from buttons import start_buttons, task2_buttons
+from buttons import start_buttons, task2_buttons, show_more_button, option_buttons
 
 bot = Bot(token=TOKEN_TG)
 dp = Dispatcher()
@@ -23,6 +23,20 @@ async def hello(message: Message):
 @dp.message(Command('links'))
 async def links(message: Message)
     await message.edit_text('Вот интересные ссылки',reply_markup=task2_buttons)
+
+@dp.message(Command('dynamic'))
+async def dynamic(message: Message)
+    await message.edit_text(message.text,reply_markup=show_more_button)
+
+@dp.callback_query(F.data == 'show_more')
+async def show_more(callback: CallbackQuery)
+    await callback.answer('')
+    await callback.message.edit_text('/dynamic', reply_markup=option_buttons)
+
+# @dp.callback_query(F.data == 'option')
+# async def option(button, callback: CallbackQuery)
+#     await callback.answer('')
+#     await callback.message.answer('')
 
 
 async def main():

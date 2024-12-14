@@ -1,5 +1,6 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
 start_buttons = ReplyKeyboardMarkup(keyboard=[
     [KeyboardButton(text='Привет')],
@@ -11,3 +12,14 @@ task2_buttons = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='Музыка',url='https://music.yandex.ru/home')],
     [InlineKeyboardButton(text='Новости',url='https://ria.ru/')]
 ])
+
+show_more_button = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text='Показать больше',callback_data='show_more')]
+])
+
+option_buttons =['Опция 1','Опция 2']
+
+def option_buttons():
+    keyboard = InlineKeyboardBuilder()
+    for button in option_buttons:
+        keyboard.add(InlineKeyboardButton(text=button, callback_data='option(button)'))
