@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher,F
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
 from config import TOKEN_TG
-from buttons import start_buttons
+from buttons import start_buttons, task2_buttons
 
 bot = Bot(token=TOKEN_TG)
 dp = Dispatcher()
@@ -14,8 +14,15 @@ async def start(message: Message):
 
 @dp.message(F.text == 'Привет')
 async def hello(message: Message):
-    await message.reply(f'Привет {message.from_user.id}!')
+    await message.reply(f'Привет {message.from_user.first_name}!')
 
+@dp.message(F.text == 'Пока')
+async def hello(message: Message):
+    await message.reply(f'До свидания {message.from_user.first_name}!')
+
+@dp.message(Command('links'))
+async def links(message: Message)
+    await message.edit_text('Вот интересные ссылки',reply_markup=task2_buttons)
 
 
 async def main():
