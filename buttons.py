@@ -22,4 +22,4 @@ option_buttons =['Опция 1','Опция 2']
 def option_buttons():
     keyboard = InlineKeyboardBuilder()
     for button in option_buttons:
-        keyboard.add(InlineKeyboardButton(text=button, callback_data='option(button)'))
+        keyboard.add(InlineKeyboardButton(text=button, callback_data='option:button)'))

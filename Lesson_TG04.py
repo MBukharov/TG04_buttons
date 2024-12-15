@@ -33,10 +33,11 @@ async def show_more(callback: CallbackQuery)
     await callback.answer('')
     await callback.message.edit_text('/dynamic', reply_markup=option_buttons)
 
-# @dp.callback_query(F.data == 'option')
-# async def option(button, callback: CallbackQuery)
-#     await callback.answer('')
-#     await callback.message.answer('')
+@dp.callback_query(F.data.startswith('option:'))
+async def option(callback: CallbackQuery):
+    await callback.answer('')
+    param = callback.data.split(':')[1]
+    await callback.message.answer(param)
 
 
 async def main():
