@@ -19,7 +19,8 @@ show_more_button = InlineKeyboardMarkup(inline_keyboard=[
 
 option_buttons =['Опция 1','Опция 2']
 
-def option_buttons():
+async def option_button():
     keyboard = InlineKeyboardBuilder()
     for button in option_buttons:
-        keyboard.add(InlineKeyboardButton(text=button, callback_data='option:button)'))
+        keyboard.add(InlineKeyboardButton(text=button, callback_data='option:'+button))
+    return keyboard.adjust(2).as_markup()
