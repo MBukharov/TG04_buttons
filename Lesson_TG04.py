@@ -21,15 +21,15 @@ async def hello(message: Message):
     await message.reply(f'До свидания {message.from_user.first_name}!')
 
 @dp.message(Command('links'))
-async def links(message: Message)
+async def links(message: Message):
     await message.edit_text('Вот интересные ссылки',reply_markup=task2_buttons)
 
 @dp.message(Command('dynamic'))
-async def dynamic(message: Message)
+async def dynamic(message: Message):
     await message.edit_text(message.text,reply_markup=show_more_button)
 
 @dp.callback_query(F.data == 'show_more')
-async def show_more(callback: CallbackQuery)
+async def show_more(callback: CallbackQuery):
     await callback.answer('')
     await callback.message.edit_text('/dynamic', reply_markup=option_buttons)
 
